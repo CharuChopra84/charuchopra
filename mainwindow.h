@@ -50,6 +50,9 @@ private slots:
     void drawCircle();
     void drawEllipse();
     void drawArc();
+    void on_actionSave_triggered();
+    void on_actionOpen_triggered();
+    void on_actionQuit_2_triggered();
 };
 
 #endif // MAINWINDOW_H

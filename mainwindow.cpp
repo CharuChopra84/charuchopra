@@ -2,6 +2,11 @@
 #include "ui_mainwindow.h"
 
 #include <QMouseEvent>
+#include<QFileDialog>
+#include<QMessageBox>
+#include<QTextEdit>
+#include<QString>
+
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -90,6 +95,54 @@ void MainWindow::wheelEvent(QWheelEvent* event) {
         // Zooming out
         ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
     }
+}
+
+void MainWindow::on_actionOpen_triggered()
+                        {
+                            QString filename=QFileDialog::getOpenFileName(
+                                        this,
+                                        tr("Open File"),
+                                        QString(),
+                                        tr("file Name(*.dwg|*.DWG|*.dxf)")
+                                        );
+                            if (!filename.isEmpty()) {
+                                QFile file(filename);
+                                if (!file.open(QIODevice::ReadOnly)) {
+                                    QMessageBox::critical(this,
+tr("Error"), tr("Could not open file"));
+                                    return;
+                                }
+
+                            }
+                        }
+                        void MainWindow::on_actionSave_triggered()
+                        {
+
+                             QString filename=QFileDialog::getSaveFileName(
+                                         this,
+                                         tr("Save File"),
+                                         QString(),
+                                         tr("file Name(*.txt)")
+                 );
+     if(!filename.isEmpty()) {
+         QFile file(filename);
+         if (!file.open(QIODevice::WriteOnly)) {
+             QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+             return;
+         } else {
+             QTextStream stream(&file);
+             QTextEdit *textEdit;
+             stream << textEdit->toPlainText();
+             stream.flush();
+             file.close();
+         }
+
+     }
+
+}
+void MainWindow::on_actionQuit_2_triggered(){
+    MainWindow *window;
+    window->close();
 }
 
 MainWindow::~MainWindow()
