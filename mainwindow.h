@@ -6,6 +6,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPainter>
+#include<QPixmap>
+#include<QImage>
 
 #include "line.h"
 #include "circle.h"
@@ -43,6 +45,8 @@ private:
     circle *item2;
     ellipse *item3;
     arc *item4;
+    QPixmap image;
+    QImage *imageObject;
 
 private slots:
     void drawPoint();
@@ -55,7 +59,7 @@ private slots:
     void on_actionQuit_2_triggered();
     void on_actionZoom_In_triggered();
     void on_actionZoom_Out_triggered();
-
+    void on_actionInsert_Image_triggered();
 };
 
 #endif // MAINWINDOW_H

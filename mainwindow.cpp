@@ -6,6 +6,8 @@
 #include<QMessageBox>
 #include<QTextEdit>
 #include<QString>
+#include<QFileDialog>
+#include<QString>
 
 #include <QDebug>
 
@@ -45,6 +47,7 @@ connect(ui->arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
     connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
              connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
+connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
 }
 
 void MainWindow::drawPoint(){
@@ -169,4 +172,15 @@ void MainWindow::on_actionZoom_In_triggered(){
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::on_actionInsert_Image_triggered(){
+    QString imagePath =QFileDialog::getOpenFileName(this,tr("open File"),"",tr("JPEG(*.jpg *.jpeg);;PNG(*.png)"));
+    imageObject =new QImage();
+    imageObject->load(imagePath);
+    image = QPixmap::fromImage(*imageObject);
+    scene =new QGraphicsScene(this);
+    scene->addPixmap(image);
+    scene->setSceneRect(image.rect());
+    ui->graphicsView->setScene(scene);
+
 }
