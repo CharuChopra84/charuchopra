@@ -42,6 +42,9 @@ connect(ui->arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
     connect(ui->actionLine, SIGNAL(triggered()), this, SLOT(drawLine()));
     connect(ui->actionCircle, SIGNAL(triggered()), this, SLOT(drawCircle()));
     connect(ui->actionEllipse, SIGNAL(triggered()), this, SLOT(drawEllipse()));
+    connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
+             connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
+
 }
 
 void MainWindow::drawPoint(){
@@ -144,6 +147,24 @@ void MainWindow::on_actionQuit_2_triggered(){
     MainWindow *window;
     window->close();
 }
+void MainWindow::on_actionZoom_In_triggered(){
+     QWheelEvent *event;
+    double scaleFactor = 1.15;
+    if(event->delta() > 0) {
+        // Zoom in
+        ui->graphicsView->scale(scaleFactor, scaleFactor);
+
+}
+}
+    void MainWindow::on_actionZoom_Out_triggered(){
+         QWheelEvent *event;
+        double scaleFactor = 1.15;
+        if(event->delta() > 0) {
+            // Zoom out
+           ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
+
+    }
+    }
 
 MainWindow::~MainWindow()
 {
