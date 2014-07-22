@@ -105,22 +105,21 @@ void MainWindow::wheelEvent(QWheelEvent* event) {
 
 void MainWindow::on_actionOpen_triggered()
                         {
-                            QString filename=QFileDialog::getOpenFileName(
-                                        this,
-                                        tr("Open File"),
-                                        QString(),
-                                        tr("file Name(*.dwg|*.DWG|*.dxf)")
-                                        );
-                            if (!filename.isEmpty()) {
-                                QFile file(filename);
-                                if (!file.open(QIODevice::ReadOnly)) {
-                                    QMessageBox::critical(this,
-tr("Error"), tr("Could not open file"));
-                                    return;
-                                }
+ QString fileName = QFileDialog::getOpenFileName(this,
+                                        tr("Open File"), QDir::currentPath());
+        if (!fileName.isEmpty()) {
 
-                            }
-                        }
+      QGraphicsPixmapItem *pix= new QGraphicsPixmapItem();
+      pix->setPixmap(QPixmap(fileName, 0, Qt::AutoColor));
+      scene->addItem(pix);
+      ui->graphicsView->setScene(scene);
+        }
+
+
+    return ;
+
+   }
+                       
                         void MainWindow::on_actionSave_triggered()
                         {
 
