@@ -269,6 +269,7 @@
     <addaction name="actionRotate"/>
     <addaction name="actionScale"/>
     <addaction name="actionMirror"/>
+    <addaction name="actionMirror_y"/>
     <addaction name="actionMove_and_Rotate"/>
     <addaction name="actionRotate_Two"/>
     <addaction name="actionRevert_Direction"/>
@@ -326,7 +327,7 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>New</string>
@@ -710,10 +711,10 @@
   </action>
   <action name="actionMirror">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
-    <string>Mirror</string>
+    <string>Mirror(X)</string>
    </property>
   </action>
   <action name="actionMove_and_Rotate">
@@ -930,6 +931,11 @@
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionMirror_y">
+   <property name="text">
+    <string>Mirror(y)</string>
    </property>
   </action>
  </widget>

@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("GD CAD"));
+
+
     scene =  new QGraphicsScene;
 
     for(int x = 0; x <= ui->graphicsView->width(); x += 10){
@@ -39,16 +41,20 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->lineButton, SIGNAL(clicked()), this, SLOT(drawLine()));
     connect(ui->circleButton, SIGNAL(clicked()), this, SLOT(drawCircle()));
     connect(ui->ellipseButton, SIGNAL(clicked()), this, SLOT(drawEllipse()));
-connect(ui->arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
+    connect(ui->arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
     connect(ui->actionPoints, SIGNAL(triggered()), this, SLOT(drawPoint()));
     connect(ui->actionLine, SIGNAL(triggered()), this, SLOT(drawLine()));
     connect(ui->actionCircle, SIGNAL(triggered()), this, SLOT(drawCircle()));
     connect(ui->actionEllipse, SIGNAL(triggered()), this, SLOT(drawEllipse()));
     connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
-             connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
+    connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
-connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
+    connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
 }
+
+
+
+
 
 void MainWindow::drawPoint(){
     ui->graphicsView->setScene(scene);
@@ -81,6 +87,14 @@ void MainWindow::drawArc(){
     connect(item4, SIGNAL(DrawFinished()), this, SLOT(drawArc()));
 }
 
+void MainWindow::on_actionMirror_triggered(){
+    ui->graphicsView->scale(1,-1);
+}
+
+void MainWindow::on_actionMirror_y_triggered(){
+    ui->graphicsView->scale(-1,1);
+}
+
 void MainWindow::drawEllipse(){
     ui->graphicsView->setScene(scene);
     item3 = new ellipse;
@@ -104,45 +118,45 @@ void MainWindow::wheelEvent(QWheelEvent* event) {
 }
 
 void MainWindow::on_actionOpen_triggered()
-                        {
- QString fileName = QFileDialog::getOpenFileName(this,
-                                        tr("Open File"), QDir::currentPath());
-        if (!fileName.isEmpty()) {
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Open File"), QDir::currentPath());
+    if (!fileName.isEmpty()) {
 
-      QGraphicsPixmapItem *pix= new QGraphicsPixmapItem();
-      pix->setPixmap(QPixmap(fileName, 0, Qt::AutoColor));
-      scene->addItem(pix);
-      ui->graphicsView->setScene(scene);
-        }
+        QGraphicsPixmapItem *pix= new QGraphicsPixmapItem();
+        pix->setPixmap(QPixmap(fileName, 0, Qt::AutoColor));
+        scene->addItem(pix);
+        ui->graphicsView->setScene(scene);
+    }
 
 
     return ;
 
-   }
-                       
-                        void MainWindow::on_actionSave_triggered()
-                        {
+}
 
-                             QString filename=QFileDialog::getSaveFileName(
-                                         this,
-                                         tr("Save File"),
-                                         QString(),
-                                         tr("file Name(*.txt)")
-                 );
-     if(!filename.isEmpty()) {
-         QFile file(filename);
-         if (!file.open(QIODevice::WriteOnly)) {
-             QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
-             return;
-         } else {
-             QTextStream stream(&file);
-             QTextEdit *textEdit;
-             stream << textEdit->toPlainText();
-             stream.flush();
-             file.close();
-         }
+void MainWindow::on_actionSave_triggered()
+{
 
-     }
+    QString filename=QFileDialog::getSaveFileName(
+                this,
+                tr("Save File"),
+                QString(),
+                tr("file Name(*.txt)")
+                );
+    if(!filename.isEmpty()) {
+        QFile file(filename);
+        if (!file.open(QIODevice::WriteOnly)) {
+            QMessageBox::critical(this, tr("Error"), tr("Could not open file"));
+            return;
+        } else {
+            QTextStream stream(&file);
+            QTextEdit *textEdit;
+            stream << textEdit->toPlainText();
+            stream.flush();
+            file.close();
+        }
+
+    }
 
 }
 void MainWindow::on_actionQuit_2_triggered(){
@@ -150,23 +164,23 @@ void MainWindow::on_actionQuit_2_triggered(){
     window->close();
 }
 void MainWindow::on_actionZoom_In_triggered(){
-     QWheelEvent *event;
+    QWheelEvent *event;
     double scaleFactor = 1.15;
     if(event->delta() > 0) {
         // Zoom in
         ui->graphicsView->scale(scaleFactor, scaleFactor);
 
+    }
 }
-}
-    void MainWindow::on_actionZoom_Out_triggered(){
-         QWheelEvent *event;
-        double scaleFactor = 1.15;
-        if(event->delta() > 0) {
-            // Zoom out
-           ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
+void MainWindow::on_actionZoom_Out_triggered(){
+    QWheelEvent *event;
+    double scaleFactor = 1.15;
+    if(event->delta() > 0) {
+        // Zoom out
+        ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
 
     }
-    }
+}
 
 MainWindow::~MainWindow()
 {
