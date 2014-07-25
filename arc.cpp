@@ -54,17 +54,18 @@ void arc:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWid
         p2.setX(x2);
         p2.setY(y2);
 
-////        radius = qSqrt(qPow((x2-x1), 2) + qPow((y2-y1), 2));
+       radius = qSqrt(qPow((x2-x1), 2) + qPow((y2-y1), 2));
 
         painter->setPen(paintpen);
         painter->drawPoint(p2);
 
         painter->setPen(linepen);
+rect = QRect(x1-radius, y1-radius, 2*radius, 2*radius);
 
-
-           int startAngle = 30*16;
-           int spanAngle = 120*16;
-           painter->drawArc(x1,y1,x2,y2,startAngle,spanAngle);
+           int startAngle = 0;
+           int spanAngle = 90*16;
+           // painter->drawArc();
+           painter->drawArc(rect,startAngle,spanAngle);
 
     }
 }
