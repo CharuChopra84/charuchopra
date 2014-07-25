@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include<QShortcut>
 #include <QMouseEvent>
 #include<QFileDialog>
 #include<QMessageBox>
@@ -49,7 +49,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
     connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
+
     connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
+
 }
 
 
