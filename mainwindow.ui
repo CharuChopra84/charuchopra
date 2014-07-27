@@ -185,13 +185,13 @@
     <addaction name="actionSave_As"/>
     <addaction name="actionImport"/>
     <addaction name="actionExport"/>
-    <addaction name="actionPrint"/>
+    <addaction name="actionClose"/>
     <addaction name="actionSave"/>
     <addaction name="separator"/>
-    <addaction name="actionPrint_Preview"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionPrint"/>
+    <addaction name="actionPrintPreview"/>
     <addaction name="separator"/>
-    <addaction name="actionQuit_2"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -382,7 +382,7 @@
     <string>Import</string>
    </property>
   </action>
-  <action name="actionPrint">
+  <action name="actionClose">
    <property name="enabled">
     <bool>false</bool>
    </property>
@@ -390,7 +390,7 @@
     <string>Close</string>
    </property>
   </action>
-  <action name="actionPrint_Preview">
+  <action name="actionPrint">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -401,7 +401,7 @@
     <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionQuit">
+  <action name="actionPrintPreview">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -961,7 +961,7 @@
     <string>About</string>
    </property>
   </action>
-  <action name="actionQuit_2">
+  <action name="actionQuit">
    <property name="enabled">
     <bool>true</bool>
    </property>
