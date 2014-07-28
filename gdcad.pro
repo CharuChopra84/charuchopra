@@ -14,18 +14,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    circle.cpp \
-    ellipse.cpp \
-    point.cpp \
-    line.cpp \
-    arc.cpp
+    gdkernel/circle.cpp \
+     gdkernel/ellipse.cpp \
+     gdkernel/point.cpp \
+     gdkernel/line.cpp \
+     gdkernel/arc.cpp
 
 HEADERS  += mainwindow.h \
-    circle.h \
-    ellipse.h \
-    point.h \
-    line.h \
-    arc.h
+     gdkernel/circle.h \
+     gdkernel/ellipse.h \
+     gdkernel/point.h \
+     gdkernel/line.h \
+     gdkernel/arc.h
 
 FORMS    += mainwindow.ui
 

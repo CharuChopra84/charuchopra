@@ -11,11 +11,11 @@
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
 
-#include "line.h"
-#include "circle.h"
-#include "ellipse.h"
-#include "point.h"
-#include "arc.h"
+#include "gdkernel/line.h"
+#include "gdkernel/circle.h"
+#include "gdkernel/ellipse.h"
+#include "gdkernel/point.h"
+#include "gdkernel/arc.h"
 
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
