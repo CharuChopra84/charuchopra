@@ -56,8 +56,8 @@ private slots:
     void drawLine();
     void drawCircle();
     void drawEllipse();
-
     void drawArc();
+
     void on_actionSave_triggered();
     void on_actionOpen_triggered();
     void on_actionZoom_In_triggered();
@@ -70,6 +70,7 @@ private slots:
     void filePrintPreview();
     void filePrint();
     void print(QPrinter *);
+    bool eventFilter(QObject *obj, QEvent *event);
 
 };
 

@@ -22,20 +22,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene =  new QGraphicsScene;
 
-    for(int x = 0; x <= ui->graphicsView->width(); x += 10){
-        scene->addLine(x,0,x,ui->graphicsView->height(),QPen(Qt::green));
-    }
-    for(int y = 0; y <= ui->graphicsView->height(); y += 10){
-        scene->addLine(0,y,ui->graphicsView->width(),y,QPen(Qt::green));
-    }
-
-    for(int x = 10; x <= ui->graphicsView->width(); x += 100){
-        scene->addLine(x,0,x,ui->graphicsView->height(),QPen(Qt::darkGreen));
-    }
-
-    for(int y = 10; y <= ui->graphicsView->height(); y += 100){
-        scene->addLine(0,y,ui->graphicsView->width(),y,QPen(Qt::darkGreen));
-    }
+ qApp->installEventFilter(this);
 
     ui->graphicsView->setScene(scene);
 
@@ -57,6 +44,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
 
 }
+
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if (event->type() == QEvent::MouseMove)
+    {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        QMainWindow::statusBar()->showMessage(QString("Mouse move (%1,%2)").arg(mouseEvent->pos().x()).arg(mouseEvent->pos().y()));
+    }
+    return false;
+}
+
 
 void  MainWindow::filePrintPreview()
 {
