@@ -7,15 +7,18 @@
 #include <QGraphicsView>
 #include <QPainter>
 #include<QPixmap>
+#include <QScrollBar>
+#include <QVBoxLayout>
+#include <QWidget>
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
 
-#include "gdkernel/line.h"
-#include "gdkernel/circle.h"
-#include "gdkernel/ellipse.h"
-#include "gdkernel/point.h"
-#include "gdkernel/arc.h"
+#include "line.h"
+#include "circle.h"
+#include "ellipse.h"
+#include "point.h"
+#include "arc.h"
 
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
@@ -23,6 +26,7 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
+    void newDocument();
     ~MainWindow();
 
 protected:
@@ -50,7 +54,6 @@ private:
     QImage *imageObject;
 
 
-
 private slots:
     void drawPoint();
     void drawLine();
@@ -65,12 +68,13 @@ private slots:
     void on_actionInsert_Image_triggered();
     void on_actionMirror_triggered();
     void on_actionMirror_y_triggered();
-    void on_actionQuit_2_triggered();
+    void on_actionQuit_triggered();
 
     void filePrintPreview();
     void filePrint();
     void print(QPrinter *);
     bool eventFilter(QObject *obj, QEvent *event);
+    void keyPressEvent( QKeyEvent * event );
 
 };
 

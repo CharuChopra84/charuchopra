@@ -6,7 +6,7 @@ line::line()
     mFirstClick = true;
     mSecondClick = false;
     mPaintFlag = false;
-    setFlag(ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsSelectable);
     setAcceptHoverEvents(true);
 }
 

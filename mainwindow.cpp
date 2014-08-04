@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QShortcut>
-#include <QMouseEvent>
+#include<QMouseEvent>
 #include<QFileDialog>
 #include<QMessageBox>
 #include<QTextEdit>
@@ -9,6 +9,8 @@
 #include<QFileDialog>
 #include<QString>
 #include<QDateTime>
+#include<memory>
+#include<QGLWidget>
 
 
 #include <QDebug>
@@ -19,10 +21,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("GD CAD"));
 
+ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 
-    scene =  new QGraphicsScene;
-
- qApp->installEventFilter(this);
+scene =  new QGraphicsScene;
+    qApp->installEventFilter(this);
 
     ui->graphicsView->setScene(scene);
 
@@ -45,6 +48,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
 }
 
+
+void MainWindow::keyPressEvent( QKeyEvent * event )
+{
+  if( event->key() == Qt::Key_Control ) {
+    ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
+
+  }
+  //QMainWindow::keyPressEvent(event);
+
+
+}
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
@@ -102,6 +116,7 @@ void MainWindow::drawPoint(){
     scene->addItem(item);
     qDebug() << "Point Created";
     connect(item, SIGNAL(DrawFinished()), this, SLOT(drawPoint()));
+
 }
 
 void MainWindow::drawLine(){
@@ -110,6 +125,7 @@ void MainWindow::drawLine(){
     scene->addItem(item1);
     qDebug() << "Line Created";
     connect(item1, SIGNAL(DrawFinished()), this, SLOT(drawLine()));
+
 }
 
 void MainWindow::drawCircle(){
@@ -123,7 +139,7 @@ void MainWindow::drawArc(){
     ui->graphicsView->setScene(scene);
     item4 = new arc;
     scene->addItem(item4);
-    qDebug() << "Circle Created";
+    qDebug() << "Arc Created";
     connect(item4, SIGNAL(DrawFinished()), this, SLOT(drawArc()));
 }
 
@@ -199,7 +215,7 @@ void MainWindow::on_actionSave_triggered()
     }
 
 }
-void MainWindow::on_actionQuit_2_triggered(){
+void MainWindow::on_actionQuit_triggered(){
     MainWindow *window;
     window->close();
 }
