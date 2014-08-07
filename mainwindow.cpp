@@ -19,11 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle(tr("GD CAD"));
-    QGraphicsScene *scene = new QGraphicsScene;
-    scene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
-    toolButton->setCheckable(true);
-    graphicsView->setScene(scene);
+//    setWindowTitle(tr("GD CAD"));
+//    QGraphicsScene *scene = new QGraphicsScene;
+//    scene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
+//    toolButton->setCheckable(true);
+//    graphicsView->setScene(scene);
 
 
 ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);

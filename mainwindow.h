@@ -20,7 +20,7 @@
 #include "ellipse.h"
 #include "point.h"
 #include "arc.h"
-#include "graphicsview.h"
+//#include "graphicsview.h"
 
 
 class MainWindow : public QMainWindow, public Ui::MainWindow
@@ -84,10 +84,10 @@ private slots:
     bool eventFilter(QObject *obj, QEvent *event);
     void keyPressEvent( QKeyEvent * event );
 
-public slots:
+//public slots:
 
-void on_toolButton_clicked( bool checked ) {
-  graphicsView->setAddText(checked); }
+//void on_toolButton_clicked( bool checked ) {
+//  graphicsView->setAddText(checked); }
 
 
 
