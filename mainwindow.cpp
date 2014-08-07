@@ -20,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowTitle(tr("GD CAD"));
+    QGraphicsScene *scene = new QGraphicsScene;
+    scene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
+    toolButton->setCheckable(true);
+    graphicsView->setScene(scene);
+
 
 ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 ui->graphicsView->setRenderHint(QPainter::Antialiasing);
@@ -41,7 +46,7 @@ scene =  new QGraphicsScene;
     connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
     connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
-
+    connect(ui->toolButton,SIGNAL(clicked(bool)),this,SLOT(on_toolButton_clicked(bool)));
     connect(ui->actionPrint, SIGNAL(triggered()), this, SLOT(filePrint()));
     connect(ui->actionPrintPreview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
     connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
@@ -133,6 +138,8 @@ void MainWindow::drawCircle(){
     item2 = new circle;
     scene->addItem(item2);
     qDebug() << "Circle Created";
+   item2->setFlag(QGraphicsItem::ItemIsSelectable);
+
     connect(item2, SIGNAL(DrawFinished()), this, SLOT(drawCircle()));
 }
 void MainWindow::drawArc(){
@@ -158,6 +165,14 @@ void MainWindow::drawEllipse(){
     qDebug() << "Ellipse Created";
     connect(item3, SIGNAL(DrawFinished()), this, SLOT(drawEllipse()));
 }
+
+//void MainWindow::on_toolButton_clicked(bool checked){
+//    ui->graphicsView->setScene(scene);
+//    item5 =new mtext;
+//    scene->addItem(item5);
+//    qDebug()<<"Text Addded";
+
+//}
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
     ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);

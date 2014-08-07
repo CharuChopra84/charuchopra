@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QPainter>
+#include <QtCore>
 #include<QPixmap>
 #include <QScrollBar>
 #include <QVBoxLayout>
@@ -19,6 +20,8 @@
 #include "ellipse.h"
 #include "point.h"
 #include "arc.h"
+#include "graphicsview.h"
+
 
 class MainWindow : public QMainWindow, public Ui::MainWindow
 {
@@ -26,8 +29,10 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-    void newDocument();
+
     ~MainWindow();
+
+
 
 protected:
     void wheelEvent(QWheelEvent* event);
@@ -37,6 +42,8 @@ private:
     Ui::MainWindow *ui;
     bool mFirstClick;
     bool mPaintFlag;
+    bool addText;
+
     int mStartX;
     int mStartY;
     int mEndX;
@@ -48,7 +55,8 @@ private:
     line *item1;
     circle *item2;
     ellipse *item3;
-       arc *item4;
+    arc *item4;
+   // mtext *item5;
     QPrinter *printer;
     QPixmap image;
     QImage *imageObject;
@@ -75,6 +83,15 @@ private slots:
     void print(QPrinter *);
     bool eventFilter(QObject *obj, QEvent *event);
     void keyPressEvent( QKeyEvent * event );
+
+public slots:
+
+void on_toolButton_clicked( bool checked ) {
+  graphicsView->setAddText(checked); }
+
+
+
+
 
 };
 

@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     ellipse.cpp \
   point.cpp \
     line.cpp \
-     arc.cpp
+     arc.cpp \
+    graphicsview.cpp
 
 HEADERS  += mainwindow.h \
      circle.h \
@@ -26,7 +27,7 @@ HEADERS  += mainwindow.h \
    point.h \
     line.h \
    arc.h \
-    const.h
+    graphicsview.h
 
 FORMS    += mainwindow.ui
 
