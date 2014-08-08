@@ -11,11 +11,11 @@ point::point()
 QRectF point::boundingRect() const
 {
     // outer most edges
-    return QRectF(0,0,800,800);
+    return QRectF(0,0,1400,1400);
 }
 
 void point:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-    QRectF rect = boundingRect();
+
     if(mPaintFlag){
         QPen paintpen(Qt::red);
         paintpen.setWidth(4);

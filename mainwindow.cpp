@@ -16,54 +16,36 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
-//    setWindowTitle(tr("GD CAD"));
-//    QGraphicsScene *scene = new QGraphicsScene;
-//    scene->setSceneRect( -100.0, -100.0, 200.0, 200.0 );
-//    toolButton->setCheckable(true);
-//    graphicsView->setScene(scene);
+    setupUi(this);
+    setWindowTitle(tr("GD CAD"));
 
+   toolButton->setCheckable(true);
+   scene =  new QGraphicsScene;
+    graphicsView->setScene(scene);
 
-ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-ui->graphicsView->setRenderHint(QPainter::Antialiasing);
-
-scene =  new QGraphicsScene;
     qApp->installEventFilter(this);
 
-    ui->graphicsView->setScene(scene);
+    connect(pointButton, SIGNAL(clicked()), this, SLOT(drawPoint()));
+    connect(lineButton, SIGNAL(clicked()), this, SLOT(drawLine()));
+    connect(circleButton, SIGNAL(clicked()), this, SLOT(drawCircle()));
+    connect(ellipseButton, SIGNAL(clicked()), this, SLOT(drawEllipse()));
+    connect(arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
+    connect(actionPoints, SIGNAL(triggered()), this, SLOT(drawPoint()));
+    connect(actionLine, SIGNAL(triggered()), this, SLOT(drawLine()));
+    connect(actionCircle, SIGNAL(triggered()), this, SLOT(drawCircle()));
+    connect(actionEllipse, SIGNAL(triggered()), this, SLOT(drawEllipse()));
+    connect(actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
+    connect(actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
-    connect(ui->pointButton, SIGNAL(clicked()), this, SLOT(drawPoint()));
-    connect(ui->lineButton, SIGNAL(clicked()), this, SLOT(drawLine()));
-    connect(ui->circleButton, SIGNAL(clicked()), this, SLOT(drawCircle()));
-    connect(ui->ellipseButton, SIGNAL(clicked()), this, SLOT(drawEllipse()));
-    connect(ui->arcButton, SIGNAL(clicked()),this, SLOT(drawArc()));
-    connect(ui->actionPoints, SIGNAL(triggered()), this, SLOT(drawPoint()));
-    connect(ui->actionLine, SIGNAL(triggered()), this, SLOT(drawLine()));
-    connect(ui->actionCircle, SIGNAL(triggered()), this, SLOT(drawCircle()));
-    connect(ui->actionEllipse, SIGNAL(triggered()), this, SLOT(drawEllipse()));
-    connect(ui->actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
-    connect(ui->actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
-
-    connect(ui->toolButton,SIGNAL(clicked(bool)),this,SLOT(on_toolButton_clicked(bool)));
-    connect(ui->actionPrint, SIGNAL(triggered()), this, SLOT(filePrint()));
-    connect(ui->actionPrintPreview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
-    connect(ui->actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
+    //connect(toolButton,SIGNAL(clicked(bool)),this,SLOT(on_toolButton_clicked(bool)));
+    connect(actionPrint, SIGNAL(triggered()), this, SLOT(filePrint()));
+    connect(actionPrintPreview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
+    connect(actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
 
 }
 
-
-void MainWindow::keyPressEvent( QKeyEvent * event )
-{
-  if( event->key() == Qt::Key_Control ) {
-    ui->graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-
-  }
-  //QMainWindow::keyPressEvent(event);
-
-
-}
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event)
 {
@@ -116,16 +98,16 @@ void  MainWindow::print( QPrinter* printer )
 
 
 void MainWindow::drawPoint(){
-    ui->graphicsView->setScene(scene);
     item = new point;
     scene->addItem(item);
     qDebug() << "Point Created";
     connect(item, SIGNAL(DrawFinished()), this, SLOT(drawPoint()));
+    qDebug() << "point";
 
 }
 
 void MainWindow::drawLine(){
-    ui->graphicsView->setScene(scene);
+    graphicsView->setScene(scene);
     item1 = new line;
     scene->addItem(item1);
     qDebug() << "Line Created";
@@ -134,16 +116,16 @@ void MainWindow::drawLine(){
 }
 
 void MainWindow::drawCircle(){
-    ui->graphicsView->setScene(scene);
+    graphicsView->setScene(scene);
     item2 = new circle;
     scene->addItem(item2);
     qDebug() << "Circle Created";
-   item2->setFlag(QGraphicsItem::ItemIsSelectable);
+    item2->setFlag(QGraphicsItem::ItemIsSelectable);
 
     connect(item2, SIGNAL(DrawFinished()), this, SLOT(drawCircle()));
 }
 void MainWindow::drawArc(){
-    ui->graphicsView->setScene(scene);
+    graphicsView->setScene(scene);
     item4 = new arc;
     scene->addItem(item4);
     qDebug() << "Arc Created";
@@ -151,40 +133,34 @@ void MainWindow::drawArc(){
 }
 
 void MainWindow::on_actionMirror_triggered(){
-    ui->graphicsView->scale(1,-1);
+    graphicsView->scale(1,-1);
 }
 
 void MainWindow::on_actionMirror_y_triggered(){
-    ui->graphicsView->scale(-1,1);
+    graphicsView->scale(-1,1);
 }
 
 void MainWindow::drawEllipse(){
-    ui->graphicsView->setScene(scene);
+    graphicsView->setScene(scene);
     item3 = new ellipse;
     scene->addItem(item3);
     qDebug() << "Ellipse Created";
     connect(item3, SIGNAL(DrawFinished()), this, SLOT(drawEllipse()));
 }
 
-//void MainWindow::on_toolButton_clicked(bool checked){
-//    ui->graphicsView->setScene(scene);
-//    item5 =new mtext;
-//    scene->addItem(item5);
-//    qDebug()<<"Text Addded";
 
-//}
 
 void MainWindow::wheelEvent(QWheelEvent* event) {
-    ui->graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+    graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
 
     // Scale the view / do the zoom
     double scaleFactor = 1.15;
     if(event->delta() > 0) {
         // Zoom in
-        ui->graphicsView->scale(scaleFactor, scaleFactor);
+        graphicsView->scale(scaleFactor, scaleFactor);
     } else {
         // Zooming out
-        ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
+        graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
     }
 }
 
@@ -197,7 +173,7 @@ void MainWindow::on_actionOpen_triggered()
         QGraphicsPixmapItem *pix= new QGraphicsPixmapItem();
         pix->setPixmap(QPixmap(fileName, 0, Qt::AutoColor));
         scene->addItem(pix);
-        ui->graphicsView->setScene(scene);
+        graphicsView->setScene(scene);
     }
 
 
@@ -239,7 +215,7 @@ void MainWindow::on_actionZoom_In_triggered(){
     double scaleFactor = 1.15;
     if(event->delta() > 0) {
         // Zoom in
-        ui->graphicsView->scale(scaleFactor, scaleFactor);
+        graphicsView->scale(scaleFactor, scaleFactor);
 
     }
 }
@@ -248,15 +224,15 @@ void MainWindow::on_actionZoom_Out_triggered(){
     double scaleFactor = 1.15;
     if(event->delta() > 0) {
         // Zoom out
-        ui->graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
+        graphicsView->scale(1.0 / scaleFactor, 1.0 / scaleFactor);
 
     }
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+//MainWindow::~MainWindow()
+//{
+//    delete ui;
+//}
 void MainWindow::on_actionInsert_Image_triggered(){
     QString imagePath =QFileDialog::getOpenFileName(this,tr("open File"),"",tr("JPEG(*.jpg *.jpeg);;PNG(*.png)"));
     imageObject =new QImage();
@@ -265,6 +241,6 @@ void MainWindow::on_actionInsert_Image_triggered(){
     scene =new QGraphicsScene(this);
     scene->addPixmap(image);
     scene->setSceneRect(image.rect());
-    ui->graphicsView->setScene(scene);
+    graphicsView->setScene(scene);
 
 }

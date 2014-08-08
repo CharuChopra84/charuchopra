@@ -25,7 +25,6 @@ private:
     int x1, y1;
     bool mClick;
     bool mPaintFlag;
-    Ui::MainWindow *ui;
     QVector<QPointF> stuff;
 
 signals:

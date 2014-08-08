@@ -11,6 +11,7 @@
 #include <QScrollBar>
 #include <QVBoxLayout>
 #include <QWidget>
+#include "ui_mainwindow.h"
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
@@ -20,7 +21,7 @@
 #include "ellipse.h"
 #include "point.h"
 #include "arc.h"
-//#include "graphicsview.h"
+#include "graphicsview.h"
 
 
 class MainWindow : public QMainWindow, public Ui::MainWindow
@@ -28,9 +29,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+   MainWindow(QWidget *parent = 0);
 
-    ~MainWindow();
+//    ~MainWindow();
 
 
 
@@ -56,7 +57,7 @@ private:
     circle *item2;
     ellipse *item3;
     arc *item4;
-   // mtext *item5;
+
     QPrinter *printer;
     QPixmap image;
     QImage *imageObject;
@@ -82,13 +83,11 @@ private slots:
     void filePrint();
     void print(QPrinter *);
     bool eventFilter(QObject *obj, QEvent *event);
-    void keyPressEvent( QKeyEvent * event );
+    //void keyPressEvent( QKeyEvent * event );
 
-//public slots:
-
-//void on_toolButton_clicked( bool checked ) {
-//  graphicsView->setAddText(checked); }
-
+public slots:
+void on_toolButton_clicked( bool checked ) {
+    graphicsView->setAddText(checked); }
 
 
 
