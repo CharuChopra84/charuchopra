@@ -29,9 +29,9 @@ class MainWindow : public QMainWindow, public Ui::MainWindow
     Q_OBJECT
 
 public:
-   MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0);
 
-//    ~MainWindow();
+    //    ~MainWindow();
 
 
 
@@ -57,6 +57,7 @@ private:
     circle *item2;
     ellipse *item3;
     arc *item4;
+    GraphicsView *item5;
 
     QPrinter *printer;
     QPixmap image;
@@ -69,6 +70,7 @@ private slots:
     void drawCircle();
     void drawEllipse();
     void drawArc();
+
 
     void on_actionSave_triggered();
     void on_actionOpen_triggered();
@@ -83,11 +85,11 @@ private slots:
     void filePrint();
     void print(QPrinter *);
     bool eventFilter(QObject *obj, QEvent *event);
-    //void keyPressEvent( QKeyEvent * event );
+
 
 public slots:
-void on_toolButton_clicked( bool checked ) {
-    graphicsView->setAddText(checked); }
+    void on_toolButton_clicked( bool checked ) {
+        graphicsView->setAddText(checked); }
 
 
 

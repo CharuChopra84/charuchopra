@@ -20,9 +20,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
     setWindowTitle(tr("GD CAD"));
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 
-   toolButton->setCheckable(true);
-   scene =  new QGraphicsScene;
+    toolButton->setCheckable(true);
+    scene =  new QGraphicsScene;
     graphicsView->setScene(scene);
 
     qApp->installEventFilter(this);
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
     connect(actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
 
-    //connect(toolButton,SIGNAL(clicked(bool)),this,SLOT(on_toolButton_clicked(bool)));
+
     connect(actionPrint, SIGNAL(triggered()), this, SLOT(filePrint()));
     connect(actionPrintPreview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
     connect(actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
@@ -147,6 +148,7 @@ void MainWindow::drawEllipse(){
     qDebug() << "Ellipse Created";
     connect(item3, SIGNAL(DrawFinished()), this, SLOT(drawEllipse()));
 }
+
 
 
 
