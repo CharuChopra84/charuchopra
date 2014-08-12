@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 
     toolButton->setCheckable(true);
+    toolButton_2->setCheckable(true);
     scene =  new QGraphicsScene;
     graphicsView->setScene(scene);
 

@@ -90,7 +90,8 @@ private slots:
 public slots:
     void on_toolButton_clicked( bool checked ) {
         graphicsView->setAddText(checked); }
-
+    void on_toolButton_2_clicked( bool checked ) {
+        graphicsView->setAddText(checked); }
 
 
 

@@ -20,16 +20,50 @@
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2">
-       <widget class="GraphicsView" name="graphicsView">
-        <property name="dragMode">
-         <enum>QGraphicsView::RubberBandDrag</enum>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="1">
        <widget class="QWidget" name="widget" native="true">
         <layout class="QGridLayout" name="gridLayout_2">
+         <item row="6" column="0">
+          <widget class="QToolButton" name="toolButton">
+           <property name="text">
+            <string>Add Text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QToolButton" name="circleButton">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="images.qrc">
+             <normaloff>:/res/circles.png</normaloff>:/res/circles.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QToolButton" name="lineButton">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="images.qrc">
+             <normaloff>:/res/line.png</normaloff>:/res/line.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QPushButton" name="pointButton">
            <property name="toolTip">
@@ -59,47 +93,6 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QToolButton" name="lineButton">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="images.qrc">
-             <normaloff>:/res/line.png</normaloff>:/res/line.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QToolButton" name="circleButton">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="images.qrc">
-             <normaloff>:/res/circles.png</normaloff>:/res/circles.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="0">
-          <widget class="QToolButton" name="toolButton">
-           <property name="text">
-            <string>Add Text</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="0">
           <widget class="QToolButton" name="ellipseButton">
            <property name="text">
@@ -124,7 +117,21 @@
            </property>
           </widget>
          </item>
+         <item row="7" column="0">
+          <widget class="QToolButton" name="toolButton_2">
+           <property name="text">
+            <string>mText</string>
+           </property>
+          </widget>
+         </item>
         </layout>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="mtext" name="graphicsView">
+        <property name="dragMode">
+         <enum>QGraphicsView::RubberBandDrag</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -946,9 +953,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>GraphicsView</class>
+   <class>mtext</class>
    <extends>QGraphicsView</extends>
-   <header location="global">graphicsview.h</header>
+   <header location="global">mtext.h</header>
   </customwidget>
  </customwidgets>
  <resources>

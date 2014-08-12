@@ -19,7 +19,8 @@ SOURCES += main.cpp\
   point.cpp \
     line.cpp \
      arc.cpp \
-    graphicsview.cpp
+    graphicsview.cpp \
+    mtext.cpp
 
 HEADERS  += mainwindow.h \
      circle.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
    point.h \
     line.h \
    arc.h \
-    graphicsview.h
+    graphicsview.h \
+    mtext.h
 
 FORMS    += mainwindow.ui
 
