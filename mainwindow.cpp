@@ -20,8 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     setupUi(this);
     setWindowTitle(tr("GD CAD"));
-    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-
+    newFile();
     toolButton->setCheckable(true);
     toolButton_2->setCheckable(true);
     scene =  new QGraphicsScene;
@@ -40,12 +39,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(actionEllipse, SIGNAL(triggered()), this, SLOT(drawEllipse()));
     connect(actionZoom_In, SIGNAL(triggered()), this, SLOT(on_actionZoom_In_triggered()));
     connect(actionZoom_Out, SIGNAL(triggered()), this, SLOT(on_actionZoom_Out_triggered()));
-
+connect(actionNew, SIGNAL(triggered()), this, SLOT(newFile()));
 
     connect(actionPrint, SIGNAL(triggered()), this, SLOT(filePrint()));
     connect(actionPrintPreview, SIGNAL(triggered()), this, SLOT(filePrintPreview()));
     connect(actionInsert_Image,SIGNAL(triggered()),this,SLOT(on_actionInsert_Image_triggered()));
 
+}
+void MainWindow::newFile()
+{
+    scene =  new QGraphicsScene;
+    graphicsView->setScene(scene);
+    graphicsView->setDragMode(QGraphicsView::RubberBandDrag);
 }
 
 

@@ -70,6 +70,7 @@ private slots:
     void drawCircle();
     void drawEllipse();
     void drawArc();
+     void newFile();
 
 
     void on_actionSave_triggered();
