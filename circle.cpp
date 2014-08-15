@@ -5,14 +5,14 @@ circle::circle()
     mFirstClick = true;
     mSecondClick = false;
     mPaintFlag = false;
-    setFlags(ItemIsSelectable );
+    setFlags(ItemIsSelectable);
     setAcceptHoverEvents(true);
 }
 
 QRectF circle::boundingRect() const
 {
     // outer most edges
-    return QRectF(0,0,800,800);
+    return QRectF(0,0,1450,1400);
 }
 
 void circle::mousePressEvent(QGraphicsSceneMouseEvent *e)
@@ -39,9 +39,7 @@ void circle::mousePressEvent(QGraphicsSceneMouseEvent *e)
 }
 
 void circle:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-    QRectF rect = boundingRect();
     if(mPaintFlag){
-
         QPen paintpen(Qt::red);
         paintpen.setWidth(4);
 
@@ -56,10 +54,10 @@ void circle:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         painter->drawPoint(p1);
 
         QPoint p2;
-        p2.setX(x2);
-        p2.setY(y2);
+        p2.setX(move_p.x());
+        p2.setY(move_p.y());
 
-        radius = qSqrt(qPow((x2-x1), 2) + qPow((y2-y1), 2));
+        radius = qSqrt(qPow((p2.x()-x1), 2) + qPow((p2.y()-y1), 2));
 
         painter->setPen(paintpen);
         painter->drawPoint(p2);
@@ -71,6 +69,8 @@ void circle:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 void circle::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
 {
+    move_p = e->pos();
+    update();
     if (e->modifiers() & Qt::ShiftModifier) {
         stuff << e->pos();
         update();
