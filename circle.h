@@ -9,6 +9,9 @@
 #include "ui_mainwindow.h"
 #include "qmath.h"
 
+#include "storagemanager.h"
+using namespace std;
+
 class circle: public QObject, public QGraphicsItem
 {
     Q_OBJECT
@@ -30,6 +33,9 @@ private:
     Ui::MainWindow *ui;
     QVector<QPointF> stuff;
      QPointF move_p;
+     vector<Storagemanager> store_point;
+     vector<Storagemanager>::iterator i;
+      Storagemanager _store;
 
 signals:
     void DrawFinished();

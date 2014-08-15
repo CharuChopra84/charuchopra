@@ -32,6 +32,7 @@ private:
     bool mPaintFlag;
     Ui::MainWindow *ui;
     QVector<QPointF> stuff;
+    QPointF move_p;
 
 signals:
     void DrawFinished();

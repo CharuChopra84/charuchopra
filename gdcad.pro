@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     line.cpp \
      arc.cpp \
     graphicsview.cpp \
-    mtext.cpp
+    mtext.cpp \
+    storagemanager.cpp
 
 HEADERS  += mainwindow.h \
      circle.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     line.h \
    arc.h \
     graphicsview.h \
-    mtext.h
+    mtext.h \
+    storagemanager.h
 
 FORMS    += mainwindow.ui
 

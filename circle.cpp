@@ -33,6 +33,11 @@ void circle::mousePressEvent(QGraphicsSceneMouseEvent *e)
             update();
             emit DrawFinished();
         }
+        _store.set_point(e->pos());
+        store_point.push_back(_store);
+        qDebug() << _store.getValue();
+        qDebug() << "Size of vector =" << store_point.size() << "and" << store_point.capacity();
+        update();
     }
     QGraphicsItem::mousePressEvent(e);
     update();

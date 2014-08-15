@@ -68,6 +68,8 @@ void line:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
 void line::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
 {
+    move_p = e->pos();
+    update();
     if (e->modifiers() & Qt::ShiftModifier) {
         stuff << e->pos();
         update();

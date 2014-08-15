@@ -5,7 +5,9 @@
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 #include "ui_mainwindow.h"
-
+#include "storagemanager.h"
+using namespace std;
+#include<QDebug>
 class point: public QObject,public QGraphicsItem
 {
     Q_OBJECT
@@ -26,6 +28,9 @@ private:
     bool mClick;
     bool mPaintFlag;
     QVector<QPointF> stuff;
+    vector<Storagemanager> store_point;
+    vector<Storagemanager>::iterator i;
+     Storagemanager _store;
 
 signals:
     void DrawFinished();

@@ -49,7 +49,8 @@ void ellipse::mousePressEvent(QGraphicsSceneMouseEvent *e)
 }
 
 void ellipse::mouseMoveEvent(QGraphicsSceneMouseEvent *e)
-{
+{     move_p = e->pos();
+      update();
     if (e->modifiers() & Qt::ShiftModifier) {
         stuff << e->pos();
         update();
