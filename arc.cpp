@@ -34,6 +34,7 @@ void arc::mousePressEvent(QGraphicsSceneMouseEvent *e)
     update();
 }
 void arc:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+ setCursor(Qt::CrossCursor);
     QRectF rect = boundingRect();
     if(mPaintFlag){
 

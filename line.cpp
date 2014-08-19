@@ -39,6 +39,7 @@ void line::mousePressEvent(QGraphicsSceneMouseEvent* e){
 }
 
 void line:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
+    setCursor(Qt::CrossCursor);
     QRectF rect = boundingRect();
     if(mPaintFlag){
         QPen paintpen(Qt::red);

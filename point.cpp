@@ -15,7 +15,7 @@ QRectF point::boundingRect() const
 }
 
 void point:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget){
-
+setCursor(Qt::CrossCursor);
     if(mPaintFlag){
         QPen paintpen(Qt::red);
         paintpen.setWidth(4);
