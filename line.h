@@ -26,6 +26,7 @@ private:
     bool mFirstClick;
     bool mSecondClick;
     bool mPaintFlag;
+
     QVector<QPointF> stuff;
 QPointF move_p;
 signals:

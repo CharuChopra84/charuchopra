@@ -55,11 +55,14 @@ void line:: paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         painter->drawPoint(p1);
 
         QPoint p2;
-        p2.setX(x2);
-        p2.setY(y2);
+//        p2.setX(x2);
+//        p2.setY(y2);
 
         painter->setPen(paintpen);
         painter->drawPoint(p2);
+
+        p2.setX(move_p.x());
+        p2.setY(move_p.y());
 
         painter->setPen(linepen);
         painter->drawLine(p1, p2);
